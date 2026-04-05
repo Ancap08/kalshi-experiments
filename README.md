@@ -1,7 +1,7 @@
 # kalshi-experiments
 
 A collection of experimental trading scripts for Kalshi binary options markets. I built them while exploring different approaches — market making, arbitrage, momentum, and grid strategies — and to learn how prediction markets and automated trading actually work.
-With the right volume and YAML tweaks, some of them showed real edge and were profitable for stretches — but never consistently enough to scale into something bigger. I’m sharing them openly in case you’re on a similar journey; maybe one of these ideas helps you break through where I didn’t.
+With the right volume and YAML tweaks, some of them showed real edge and were profitable for stretches — but never consistently enough to scale into something bigger. I’m sharing them openly in case you’re on a similar journey; maybe one of these ideas helps you break through where I didn’t. If you're only going to look at one, start with TightChop — it's the most refined of the bunch.
 
 Nothing here is financial advice. These are experiments. Use them to learn, adapt, or build on.
 

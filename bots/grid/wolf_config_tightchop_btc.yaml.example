@@ -1,0 +1,78 @@
+mode: tight_chop
+
+# ── QUOTE PARAMS (Replaces Grid Params) ────────────────────────────────────
+quote_spacing_cents:            3.0       # Tighter spacing for micro-scratching
+quote_levels:                   2         # Reduced levels
+quote_qty_per_level:            4
+trailing_threshold_cents:       4.0       # Now absolute cents, not a multiplier
+chop_zone_min_cents:            15
+chop_zone_max_cents:            85
+
+# ── MICRO-SCRATCH ENGINE (NEW) ─────────────────────────────────────────────
+scratch_enabled:                true
+scratch_loss_tolerance_cents:   1.5       # Max loss per contract before ejecting
+scratch_trigger_drift_cents:    2.0       # Oracle drift required to arm the scratch
+scratch_maker_offset_cents:     1         # Distance from best ask to guarantee Maker status
+scratch_cooldown_ms:            500       # Cooldown between scratch requotes
+scratch_pride_override_gap_cents: 3.0     # If loss_floor exceeds maker_floor by this much,
+                                          # abandon loss cap and chase the ask (anti-Pride Trap)
+
+# ── ADVERSE SELECTION GATE (NEW) ───────────────────────────────────────────
+adverse_sel_kv_threshold:       -3.0      # Kalshi velocity below this → pull ALL bids
+adverse_sel_vel_threshold:      -2.0      # Binance velocity_ema below this → pull ALL bids
+
+# ── INVENTORY CAPS (Anti-Averaging Down) ───────────────────────────────────
+max_inventory_contracts:        8         # Hard cap: pure liquidation mode above this
+inventory_soft_cap_contracts:   5         # Soft cap: halves qty and doubles spacing
+max_pending_buy_contracts:      4         # Cap on resting buy orders
+max_inventory_pct:              0.15
+
+# ── FEE AWARENESS ──────────────────────────────────────────────────────────
+maker_fee_cents:                0.0
+taker_fee_cents:                1.7
+min_edge_after_fees_cents:      0.5       # Minimum spread capture to justify entry
+
+# ── TIME DECAY ─────────────────────────────────────────────────────────────
+decay_start_min_left:           6.0
+decay_half_life_sec:            150.0
+min_left_flatten:               0.25      # 15s — LAST RESORT ONLY (was 2.0)
+
+# ── GRACEFUL PHASE-OUT (replaces hard terminal flatten) ────────────────────
+phase_out_start_sec:            240.0     # T-4:00 — block new buys, cancel resting buys
+hyper_scratch_start_sec:        120.0     # T-2:00 — scratch trigger → 0, tolerance ramps up
+last_resort_flatten_sec:        15.0      # T-0:15 — taker dump only if hyper-scratch failed
+hyper_scratch_max_tolerance_cents: 5.0    # Max loss/contract at peak hyper-scratch aggression
+
+# ── V3 ORACLE PARAMETERS (Uncapped) ────────────────────────────────────────
+W_ofi:                          0.5       # Slightly reduced for thin books
+W_vel:                          0.4       # Increased: raw velocity now carries real signal
+W_kv:                           1.5       # Increased: strongest predictor of Kalshi crashes
+W_basis:                        0.2
+inventory_gamma:                0.40      # Retained from wide-market tuning
+max_stoikov_offset_cents:       15.0      # Retained from wide-market tuning
+asym_skew_strength:             0.55
+
+# ── OVERRIDES & RISK ───────────────────────────────────────────────────────
+god_candle_max_spread_cents:    8.0
+scan_interval_ms:               300       # Tightened to 300ms for faster scratch response
+ioc_timeout_secs:               3
+dump_max_retries:               5
+guillotine_velocity_threshold:  2.5
+guillotine_gap_cents:           12.0      # Retained from wide-market tuning
+spread_blown_threshold_cents:   10.0
+hard_stop_naked_cents:          20.0
+cushion_guard_min_pnl_cents:    -999.0
+basis_dislocation_threshold:    95.0      # Retained from wide-market tuning
+vault_drawdown_cents:           -2000.0
+daily_target_cents:             5000.0
+trailing_ratchet_pct:           0.50
+quick_profit_cents:             999.0
+ws_blackout_seconds:            30
+jsonl_path:                     wolf_flight_tightchop_btc.jsonl
+pnl_path:                       pnl_tracker_tightchop_btc.txt
+
+# ── REGIME FILTERS ─────────────────────────────────────────────────────────
+cti_window_seconds:             60.0
+cti_block_threshold:            -4.0
+cti_neg_fraction_min:           0.65
+spot_trend_block_bps:           -3.0

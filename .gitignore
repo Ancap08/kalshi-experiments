@@ -1,0 +1,31 @@
+# Environment and secrets — NEVER commit these
+.env
+*.pem
+*.key
+*.p12
+
+# Config files with real values (use .yaml.example instead)
+wolf_config.yaml
+wolf_config_chop_btc.yaml
+wolf_config_tightchop_btc.yaml
+
+# Runtime output
+*.log
+*.jsonl
+pnl_tracker*.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# OS
+.DS_Store
+Thumbs.db

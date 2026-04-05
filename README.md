@@ -1,6 +1,7 @@
 # kalshi-experiments
 
-A collection of experimental trading scripts for [Kalshi](https://kalshi.com) binary options markets. These were built to explore different approaches — market making, arbitrage, momentum, and grid strategies. Sharing them in case they save someone time.
+A collection of experimental trading scripts for Kalshi binary options markets. I built them while exploring different approaches — market making, arbitrage, momentum, and grid strategies — and to learn how prediction markets and automated trading actually work.
+With the right volume and YAML tweaks, some of them showed real edge and were profitable for stretches — but never consistently enough to scale into something bigger. I’m sharing them openly in case you’re on a similar journey; maybe one of these ideas helps you break through where I didn’t.
 
 Nothing here is financial advice. These are experiments. Use them to learn, adapt, or build on.
 

@@ -16,7 +16,7 @@ Nothing here is financial advice. These are experiments. Use them to learn, adap
 | `kalshi_lobster_trader.py` | `bots/llm/` | LLM-driven directional sniper using macro sentiment signals and spend caps |
 | `kalshi_falcon.py` | `bots/arb/` | BTC spot-price cross-arb (Coinbase price truth vs Kalshi strike) |
 | `kalshi_mantis_hunter.py` | `bots/arb/` | Fast async L2 pair-arb sniper with FOK atomic execution |
-| `MomentumWolf_v2.py` | `bots/momentum/` | Directional momentum hunter on ETH 15-min with pyramid entries and nuclear risk guards |
+| `MomentumWolf_v2.py` | `bots/momentum/` | MomentumWolf_v2.py — Directional momentum hunter (ETH 15-min). BTC and SOL versions use identical logic with different tickers. |
 | `ChopWolf_BTC.py` | `bots/grid/` | Oracle-centered grid chop hunter on BTC 15-min |
 | `TightChop_BTC.py` | `bots/grid/` | Ultra-tight micro-scratch grid on BTC 15-min |
 
